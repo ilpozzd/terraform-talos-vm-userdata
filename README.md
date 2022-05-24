@@ -39,7 +39,7 @@ No resources.
 | machine_base_configuration | Basic configuration of the virtual machine. | [`object`](#machine-base-configuration-input) | `-` | Yes |
 | machine_extra_configuration | Extended configuration of the virtual machine. | [`object`](#machine-extra-configuration-input) | `{}` | No |
 | <a name="machine-type-cell"></a> machine_type | The role of the virtual machine in the Kubernetes cluster (`controlplane` or `worker`). | `string` | `-` | Yes |
-| machine_cert_sans | List of alternative names of the virtual machine. | `list(string)` | `[]` | No |
+| machine_cert_sans | A list of alternative names of the virtual machine. | `list(string)` | `[]` | No |
 | machine_network | General network configuration of the virtual machine. | [`object`](#machine-network-input) | `{}` | No |
 | <a name="machine-network-hostname-cell"></a> machine_network_hostname | A network hostname of the virtual machine (if not set will be generated automatically). | `string` | `""` | No |
 | <a name="machine-network-interfaces-cell"></a> machine_network_interfaces | A list of network interfaces of the virtual machines (if not set DHCP will be used). | [`list`](#machine-network-interfaces-input) | `[]` | No |
@@ -50,8 +50,8 @@ No resources.
 | cluster_discovery | Data that sets up the discovery of nodes in the Kubernetes cluster. | [`object`](#cluster-discovery-input) | [`object`](#cluster-discovery-input) | No |
 | control_plane_cluster_configuration | Data that configure the components of the Control Plane nodes in the Kubernetes cluster. | [`object`](#control-plane-cluster-configuration-input) | `{}` | No |
 | cluster_inline_manifests | A list of Kuberenetes manifests whose content is represented as a string. These will get automatically deployed as part of the bootstrap. | [`list`](#cluster-inline-manifests-input) | `[]` | No |
-| cluster_extra_manifests | A list of `URLs` that point to additional manifests. These will get automatically deployed as part of the bootstrap. | `list(string)` | `[]` | No |
-| cluster_extra_manifest_headers |A map of key value pairs that will be added while fetching the 'cluster_extra_manifests'. | `map(string)` | `{}` | No |
+| <a name="cluster-extra-manifests-cell"></a> cluster_extra_manifests | A list of `URLs` that point to additional manifests. These will get automatically deployed as part of the bootstrap. | `list(string)` | `[]` | No |
+| cluster_extra_manifest_headers |A map of key value pairs that will be added while fetching the [cluster_extra_manifests](#cluster-extra-manifests-cell)'. | `map(string)` | `{}` | No |
 
 ### Talos Base Configuration Input
 
