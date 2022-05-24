@@ -51,7 +51,7 @@ No resources.
 | control_plane_cluster_configuration | Data that configure the components of the Control Plane nodes in the Kubernetes cluster. | [`object`](#control-plane-cluster-configuration-input) | `{}` | No |
 | cluster_inline_manifests | A list of Kuberenetes manifests whose content is represented as a string. These will get automatically deployed as part of the bootstrap. | [`list`](#cluster-inline-manifests-input) | `[]` | No |
 | <a name="cluster-extra-manifests-cell"></a> cluster_extra_manifests | A list of `URLs` that point to additional manifests. These will get automatically deployed as part of the bootstrap. | `list(string)` | `[]` | No |
-| cluster_extra_manifest_headers |A map of key value pairs that will be added while fetching the [cluster_extra_manifests](#cluster-extra-manifests-cell)'. | `map(string)` | `{}` | No |
+| cluster_extra_manifest_headers |A map of key value pairs that will be added while fetching the [cluster_extra_manifests](#cluster-extra-manifests-cell). | `map(string)` | `{}` | No |
 
 ### Talos Base Configuration Input
 
