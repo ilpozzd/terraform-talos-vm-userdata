@@ -2,6 +2,8 @@
 
 This module is used to describe the configuration of [Talos OS v1.0.x](https://www.talos.dev/v1.0/) with Terraform variables and convert them to a Base64 encoded string that can be used for bootstarap Kubernetes nodes on any `Virtualization platform` that supports VM initialization via user-data.
 
+If you find any **inconsistencies** in the **official** [configuration](https://www.talos.dev/v1.0/reference/configuration/) or incorrect logic of optional values, please **open an issue**.
+
 ## Usage
 
 See [examples](#examples).
