@@ -39,7 +39,7 @@ No resources.
 | <a name="machine-type-cell"></a> machine_type | The role of the virtual machine in the Kubernetes cluster (`controlplane` or `worker`). | `string` | `-` | Yes |
 | machine_cert_sans | List of alternative names of the virtual machine. | `list(string)` | `[]` | No |
 | machine_network | General network configuration of the virtual machine. | [`object`](#machine-network-input) | `{}` | No |
-| <a name="machine-network-hostname-cell"></a> machine_network_hostname | A network hostname of the virtual machine (if not set will be generated automatically). | `string` | `[]` | No |
+| <a name="machine-network-hostname-cell"></a> machine_network_hostname | A network hostname of the virtual machine (if not set will be generated automatically). | `string` | `""` | No |
 | <a name="machine-network-interfaces-cell"></a> machine_network_interfaces | A list of network interfaces of the virtual machines (if not set DHCP will be used). | [`list`](#machine-network-interfaces-input) | `[]` | No |
 | cluster_secrets | Secret data that is used to establish trust relationships between Kubernetes cluster nodes. | [`object`](#cluster-secrets-input) | `-` | Yes |
 | control_plane_cluster_secrets | Secret data required to establish trust relationships between components used by Control Plane nodes in the Kubernetes cluster. | [`object`](#control-plane-cluster-secrets-input) | `{}` | [Yes/No](#control-plane-cluster-secrets-input) |
