@@ -157,13 +157,13 @@ variable "machine_type" {
 }
 
 variable "machine_cert_sans" {
-  description = "List of alternative names of the virtual machine. See https://www.talos.dev/v1.0/reference/configuration/#machineconfig."
+  description = "A list of alternative names of the virtual machine. See https://www.talos.dev/v1.0/reference/configuration/#machineconfig."
   type        = list(string)
   default     = []
 }
 
 variable "machine_network" {
-  description = "General network configuration of the virtual machine. Hostname and interfaces parameters are described in separate inputs. See https://www.talos.dev/v1.0/reference/configuration/#networkconfig."
+  description = "General network configuration of the virtual machine. 'hostname' and 'interfaces' parameters are described in separate inputs. See https://www.talos.dev/v1.0/reference/configuration/#networkconfig."
   type = object({
     nameservers = optional(list(string))
     extraHostEntries = optional(list(object({
@@ -267,7 +267,7 @@ variable "cluster_secrets" {
 }
 
 variable "control_plane_cluster_secrets" {
-  description = "Secret data required to establish trust relationships between components used by Control Plane nodes in the Kubernetes cluster. Required if machine_type = controlplane. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
+  description = "Secret data required to establish trust relationships between components used by Control Plane nodes in the Kubernetes cluster. Required if machine_type = 'controlplane'. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
   type = object({
     aescbcEncryptionSecret = optional(string)
     aggregatorCA = optional(object({
