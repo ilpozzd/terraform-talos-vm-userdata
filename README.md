@@ -134,86 +134,86 @@ See [MachineConfig](https://www.talos.dev/v1.0/reference/configuration/#machinec
 
 ```hcl
 object({
-	controlPlane = optional(object({
-		controllerManager = optional(object({
-			disabled = bool
-		}))
-		scheduler = optional(object({
-			disabled = bool
-		}))
-	}))
-	pods = optional(list(map(any)))
-	disks = optional(list(object({
-		device = string
-		partitions = list(object({
-			mountpoint = string
-			size       = string
-		}))
-	})))
-	files = optional(list(object({
-		content     = string
-		permissions = string
-		path        = string
-		op          = string
-	})))
-	env = optional(object({
-		GRPC_GO_LOG_VERBOSITY_LEVEL = optional(string)
-		GRPC_GO_LOG_SEVERITY_LEVEL  = optional(string)
-		http_proxy                  = optional(string)
-		https_proxy                 = optional(string)
-		no_proxy                    = optional(bool)
-	}))
-	sysctl = optional(map(string))
-	sysfs  = optional(map(string))
-	registries = optional(object({
-		mirrors = optional(map(object({
-			endpoints = list(string)
-		})))
-		config = optional(map(object({
-			tls = object({
-				insecureSkipVerify = bool
-				clientIdentity = optional(object({
-					crt = string
-					key = string
-				}))
-				ca = optional(string)
-			})
-			auth = optional(object({
-				username      = optional(string)
-				password      = optional(string)
-				auth          = optional(string)
-				identityToken = optional(string)
-			}))
-		})))
-	}))
-	systemDiskEncryption = optional(map(object({
-		provider = string
-		keys = optional(list(object({
-			static = optional(object({
-				passphrase = string
-			}))
-			nodeID = optional(map(string))
-			slot   = optional(number)
-		})))
-		cipher    = optional(string)
-		keySize   = optional(number)
-		blockSize = optional(number)
-		options   = optional(list(string))
-	})))
-	udev = optional(object({
-		rules = list(string)
-	}))
-	logging = optional(object({
-		destinations = list(object({
-			endpoint = string
-			format   = string
-		}))
-	}))
-	kernel = optional(object({
-		modules = list(object({
-			name = string
-		}))
-	}))
+  controlPlane = optional(object({
+    controllerManager = optional(object({
+      disabled = bool
+    }))
+    scheduler = optional(object({
+      disabled = bool
+    }))
+  }))
+  pods = optional(list(map(any)))
+  disks = optional(list(object({
+    device = string
+    partitions = list(object({
+      mountpoint = string
+      size       = string
+    }))
+  })))
+  files = optional(list(object({
+    content     = string
+    permissions = string
+    path        = string
+    op          = string
+  })))
+  env = optional(object({
+    GRPC_GO_LOG_VERBOSITY_LEVEL = optional(string)
+    GRPC_GO_LOG_SEVERITY_LEVEL  = optional(string)
+    http_proxy                  = optional(string)
+    https_proxy                 = optional(string)
+    no_proxy                    = optional(bool)
+  }))
+  sysctl = optional(map(string))
+  sysfs  = optional(map(string))
+  registries = optional(object({
+    mirrors = optional(map(object({
+      endpoints = list(string)
+    })))
+    config = optional(map(object({
+      tls = object({
+        insecureSkipVerify = bool
+        clientIdentity = optional(object({
+          crt = string
+          key = string
+        }))
+        ca = optional(string)
+      })
+      auth = optional(object({
+        username      = optional(string)
+        password      = optional(string)
+        auth          = optional(string)
+        identityToken = optional(string)
+      }))
+    })))
+  }))
+  systemDiskEncryption = optional(map(object({
+    provider = string
+    keys = optional(list(object({
+      static = optional(object({
+        passphrase = string
+      }))
+      nodeID = optional(map(string))
+      slot   = optional(number)
+    })))
+    cipher    = optional(string)
+    keySize   = optional(number)
+    blockSize = optional(number)
+    options   = optional(list(string))
+  })))
+  udev = optional(object({
+    rules = list(string)
+  }))
+  logging = optional(object({
+    destinations = list(object({
+      endpoint = string
+      format   = string
+    }))
+  }))
+  kernel = optional(object({
+    modules = list(object({
+      name = string
+    }))
+  }))
 })
 ```
 
