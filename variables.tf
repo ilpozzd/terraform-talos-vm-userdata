@@ -267,7 +267,7 @@ variable "cluster_secrets" {
 }
 
 variable "control_plane_cluster_secrets" {
-  description = "Secret data required to establish trust relationships between components used by Control Plane nodes in the Kubernetes cluster. Required if machine_type = 'controlplane'. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
+  description = "Secret data required to establish trust relationships between components used by 'controlplane' nodes in the Kubernetes cluster. Required if machine_type = 'controlplane'. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
   type = object({
     aescbcEncryptionSecret = optional(string)
     aggregatorCA = optional(object({
@@ -320,7 +320,7 @@ variable "cluster_discovery" {
 }
 
 variable "control_plane_cluster_configuration" {
-  description = "Data that configure the components of the Control Plane nodes in the Kubernetes cluster. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
+  description = "Data that configure the components of the 'controlplane' nodes in the Kubernetes cluster. See https://www.talos.dev/v1.0/reference/configuration/#clusterconfig."
   type = object({
     network = optional(object({
       cni = optional(object({
