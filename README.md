@@ -2,9 +2,9 @@
 
 Page in [Terraform Registry](https://registry.terraform.io/modules/ilpozzd/vm-userdata/talos/latest)
 
-This module is used to describe the configuration of [Talos OS v1.0.x](https://www.talos.dev/v1.0/) with Terraform variables and convert them to a Base64 encoded string that can be used for bootstarap Kubernetes nodes on any `Virtualization platform` that supports VM initialization via user-data.
+This module is used to describe the configuration of [Talos OS v1.0.0-v1.2.x](https://www.talos.dev/v1.2/) with Terraform variables and convert them to a Base64 encoded string that can be used for bootstarap Kubernetes nodes on any `Virtualization platform` that supports VM initialization via user-data.
 
-If you find any **inconsistencies** in the **official** [configuration](https://www.talos.dev/v1.0/reference/configuration/) or incorrect logic of optional values, please **open an issue**.
+If you find any **inconsistencies** in the **official** [configuration](https://www.talos.dev/v1.2/reference/configuration/) or incorrect logic of optional values, please **open an issue**.
 
 ## Usage
 
@@ -73,7 +73,7 @@ Default:
 }
 ```
 
-See [Config](https://www.talos.dev/v1.0/reference/configuration/#config) section in Talos Configuration Reference for detail description.
+See [Config](https://www.talos.dev/v1.2/reference/configuration/#config) section in Talos Configuration Reference for detail description.
 
 ### Machine Secrets Input
 
@@ -87,7 +87,7 @@ object({
 })
 ```
 
-See [MachineConfig](https://www.talos.dev/v1.0/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
+See [MachineConfig](https://www.talos.dev/v1.2/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
 
 ### Machine Base Configuration 
 
@@ -128,11 +128,16 @@ object({
   }))
   features = optional(object({
     rbac = optional(bool)
+    kubernetesTalosAPIAccess = optional(object({
+      enabled                     = optional(bool)
+      allowedRoles                = optional(list(string))
+      allowedKubernetesNamespaces = optional(list(string))
+    }))
   }))
 })
 ```
 
-See [MachineConfig](https://www.talos.dev/v1.0/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
+See [MachineConfig](https://www.talos.dev/v1.2/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
 
 ### Machine Extra Configuration Input
 
@@ -218,10 +223,16 @@ object({
       name = string
     }))
   }))
+  seccompProfiles = optional(list(object({
+    name = string
+    value = object({
+      defaultAction = string
+    })
+  })))
 })
 ```
 
-See [MachineConfig](https://www.talos.dev/v1.0/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
+See [MachineConfig](https://www.talos.dev/v1.2/reference/configuration/#machineconfig) section in Talos Configuration Reference for detail description.
 
 ### Machine Network Input
 
@@ -237,7 +248,7 @@ object({
   }))
 })
 ```
-See [NetworkConfig](https://www.talos.dev/v1.0/reference/configuration/#networkconfig) section in Talos Configuration Reference for detail description. 
+See [NetworkConfig](https://www.talos.dev/v1.2/reference/configuration/#networkconfig) section in Talos Configuration Reference for detail description. 
 
 [Hostname](#machine-network-hostname-cell) and [interfaces](#machine-network-interfaces-cell) parameters are described in separate inputs.
 
@@ -308,10 +319,16 @@ list(list(object({
       apiToken = string
     }))
   }))
+  bridge = optional(object({
+    stp = optional(object({
+      enabled = bool
+    }))
+    interfaces = optional(list(string))
+  }))
 })))
 ```
 
-See [Device](https://www.talos.dev/v1.0/reference/configuration/#device) section in Talos Configuration Reference for detail description. 
+See [Device](https://www.talos.dev/v1.2/reference/configuration/#device) section in Talos Configuration Reference for detail description. 
 
 ### Cluster Secrets Input
 
@@ -326,7 +343,7 @@ object({
   })
 })
 ```
-See [ClusterConfig](https://www.talos.dev/v1.0/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description. 
+See [ClusterConfig](https://www.talos.dev/v1.2/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description. 
 
 ### Control Plane Cluster Secrets Input
 
@@ -349,7 +366,7 @@ object({
 })
 ```
 
-See [ClusterConfig](https://www.talos.dev/v1.0/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description.
+See [ClusterConfig](https://www.talos.dev/v1.2/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description.
 
 Required if [machine_type](#machine-type-cell) = `controlplane`.
 
@@ -362,7 +379,7 @@ object({
 })
 ```
 
-See [ControlPlaneConfig](https://www.talos.dev/v1.0/reference/configuration/#controlplaneconfig) section in Talos Configuration Reference for detail description. 
+See [ControlPlaneConfig](https://www.talos.dev/v1.2/reference/configuration/#controlplaneconfig) section in Talos Configuration Reference for detail description. 
 
 ### Cluster Discovery Input
 
@@ -389,7 +406,7 @@ Default:
 }
 ```
 
-See [ClusterDiscoveryConfig](https://www.talos.dev/v1.0/reference/configuration/#clusterdiscoveryconfig) section in Talos Configuration Reference for detail description.
+See [ClusterDiscoveryConfig](https://www.talos.dev/v1.2/reference/configuration/#clusterdiscoveryconfig) section in Talos Configuration Reference for detail description.
 
 ### Control Plane Cluster Configuration Input
 
@@ -466,7 +483,7 @@ object({
 })
 ```
 
-See [ClusterConfig](https://www.talos.dev/v1.0/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description. 
+See [ClusterConfig](https://www.talos.dev/v1.2/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description. 
 
 ### Cluster Inline Manifests Input
 
@@ -477,7 +494,7 @@ list(object({
 }))
 ```
 
-See [ClusterConfig](https://www.talos.dev/v1.0/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description.
+See [ClusterConfig](https://www.talos.dev/v1.2/reference/configuration/#clusterconfig) section in Talos Configuration Reference for detail description.
 
 ## Outputs
 

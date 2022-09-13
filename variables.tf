@@ -60,6 +60,11 @@ variable "machine_base_configuration" {
     }))
     features = optional(object({
       rbac = optional(bool)
+      kubernetesTalosAPIAccess = optional(object({
+        enabled                     = optional(bool)
+        allowedRoles                = optional(list(string))
+        allowedKubernetesNamespaces = optional(list(string))
+      }))
     }))
   })
 }
@@ -147,6 +152,12 @@ variable "machine_extra_configuration" {
         name = string
       }))
     }))
+    seccompProfiles = optional(list(object({
+      name = string
+      value = object({
+        defaultAction = string
+      })
+    })))
   })
   default = {}
 }
@@ -248,6 +259,12 @@ variable "machine_network_interfaces" {
       hcloud = optional(object({
         apiToken = string
       }))
+    }))
+    bridge = optional(object({
+      stp = optional(object({
+        enabled = bool
+      }))
+      interfaces = optional(list(string))
     }))
   }))
   default = []
@@ -374,9 +391,11 @@ variable "control_plane_cluster_configuration" {
       env = optional(map(string))
     }))
     etcd = optional(object({
-      image     = optional(string)
-      extraArgs = optional(map(string))
-      subnet    = optional(string)
+      image             = optional(string)
+      extraArgs         = optional(map(string))
+      subnet            = optional(string)
+      advertisedSubnets = optional(list(string))
+      listenSubnets     = optional(list(string))
     }))
     coreDNS = optional(object({
       disabled = bool
